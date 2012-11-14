@@ -16,16 +16,13 @@
 				</div>
 			</div>
 		
-		<?php include "comments.php"; ?>
+		<section id="comments">
+			<?php include "comments.php"; ?>
+		</section>
 	</div>
 	
 	<!-- sidebar -->
-	<div class="span4">
-		<div class="content">
-			<h2>Sidebar</h2>
-			<p>Some text here</p>
-		</div>
-	</div>
+	<?php include 'sidebar.php' ?>
 	
 </div>
 

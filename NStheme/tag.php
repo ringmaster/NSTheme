@@ -1,11 +1,11 @@
 <?php if ( !defined( 'HABARI_PATH' ) ) { die('No direct access'); } ?>
 <?php $theme->display ( 'header' ); ?>
 
-
 <div class="row">
 
 	<div class="span8">
 		<!--begin loop-->
+		<h2 class="tagtitle"><?php echo $tags_msg; ?></h2>
 		<?php foreach ( $posts as $post ) { ?>
 			<div id="post-<?php echo $post->id; ?>" class="row post">
 				<div class="span8 entry">

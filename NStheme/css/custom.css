@@ -752,12 +752,17 @@ body section#header {
   position: relative;
   height: 100px;
   background: #F0F0F0;
-  border-radius: 0 0 15px 15px;
-  -webkit-border-radius: 0 0 15px 15px;
-  -moz-border-radius: 0 0 15px 15px;
+  border-radius: 0 0 10px 10px;
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
   border-style: none solid solid none;
   border-width: 1px;
   border-color: #949494;
+}
+@media (max-width: 480px) {
+  body section#header {
+    height: 60px;
+  }
 }
 body section#header h1 a {
   position: absolute;
@@ -770,6 +775,10 @@ body section#header h1 a {
 }
 body section#nav {
   overflow: auto;
+}
+body section#nav .navbar-inner {
+  background-color: transparent;
+  background-image: none;
 }
 body section#nav .table {
   display: table;
@@ -792,12 +801,17 @@ body section#main .content {
   background: #F0F0F0;
   padding: 15px;
   overflow: auto;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
 }
 body section#main .content img {
   padding: 5px;
+}
+body section#main h2.tagtitle {
+  font-family: 'TitilliumText22LBold';
+  color: #DDDEDF;
+  font-size: 30px;
 }
 body section#main .post h2.post-title {
   padding-top: 15px;
@@ -831,7 +845,6 @@ body section#main .post .postmeta {
   clear: both;
   overflow: auto;
   margin-bottom: -10px;
-  background: #ffffff;
 }
 body section#main .post .postmeta .date {
   clear: both;
@@ -857,15 +870,54 @@ body section#main .postnav p a {
 body section#main .postnav p a:hover {
   color: #949494;
 }
+@media (max-width: 767px) {
+  body section#main .sidebar {
+    display: none;
+  }
+}
 body section#footer {
   background: #F0F0F0;
   padding: 15px;
   overflow: auto;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   margin-top: 20px;
 }
 body section#footer p {
   text-align: center;
+}
+body section#comments {
+  color: #DDDEDF;
+}
+body section#comments legend {
+  margin: 0;
+  color: #DDDEDF;
+}
+body section#comments #cf_commenter,
+body section#comments #cf_email {
+  max-width: 220px;
+}
+body section#comments .form-part-1 {
+  width: 220px;
+  float: left;
+}
+body section#comments .form-part-2 {
+  max-width: 600px;
+  min-width: 220px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body section#comments .form-part-2 textarea {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: none;
+  width: 100%;
+  height: 90px;
+}
+body section#comments .form-part-2 input[type=submit] {
+  margin-top: 10px;
+  height: 25px;
 }

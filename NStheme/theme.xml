@@ -3,7 +3,7 @@
         <name>NStheme</name>
         <author>sicks</author>
         <url>http://thenullstate.net</url>
-        <version>1.0</version>
-        <description>I'm makin stuff.</description>
+        <version>0.1</version>
+        <description>Custom Theme for thenullstate.net</description>
         <template_engine>rawphpengine</template_engine>
 </pluggable>

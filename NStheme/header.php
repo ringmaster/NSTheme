@@ -29,18 +29,7 @@
 	</section></div>
 
 	<div class="container"><section id="nav">
-		<div class="navbar"><div class="table">
-			<ul class="nav">
-				<li><a href="<?php Site::out_url( 'habari' ); ?>"><?php _e('Home'); ?></a></li>
-				<?php
-				// List Pages
-				foreach ( $pages as $page ) {
-					echo '<li><a href="' . $page->permalink . '" title="' . $page->title . '">' . $page->title . '</a></li>' . "\n";
-				}
-				?>
-				<li></li>
-			</ul>
-		</div></div>
+		<?php include 'nav.php'; ?>
 	</section></div>
 
 <!--begin main container-->

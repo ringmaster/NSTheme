@@ -57,9 +57,40 @@ class NStheme extends theme{
 				$this->tags_msg = _t( 'Posts tagged with %s and not with %s', array( Format::tag_and_list( $this->include_tag ), Format::tag_and_list( $this->exclude_tag ) ) );
 			}
 		}
-
+		
+		
 		parent::add_template_vars();
 		
+	}
+	/**
+	 * Customize comment form layout with fieldsets.
+	 */
+	public function action_form_comment( $form ) { 
+		//My custom comment form
+		$form->append( 'fieldset', 'cf_commentbox', _t( 'Who Are You' ) );
+		$form->cf_commentbox->class = "form-part-1";
+		//move the Name ( cf_commenter) into the fieldset
+		$form->cf_commenter->move_into( $form->cf_commentbox );
+		$form->cf_commenter->caption = _t( 'Name:' ) . '<span class="required">' . ( Options::get( 'comments_require_id' ) == 1 ? ' *' . _t( 'Required' ) : '' ) . '</span></label>';
+		//move the Email ( cf_email) into the Fieldset
+		$form->cf_email->move_into( $form->cf_commentbox );
+		$form->cf_email->caption = _t( 'Email Address:' ) . '<span class="required">' . ( Options::get( 'comments_require_id' ) == 1 ? ' *' . _t( 'Required' ) : '' ) . '</span></label>'; 
+		//add a disclaimer/message
+		$form->append('static','cf_disclaimer', _t( '<p><em><small>Email address is not published</small></em></p>' ) );
+		//move the disclaimer into the fieldset
+		$form->cf_disclaimer->move_into( $form->cf_commentbox );
+		//remove the url piece
+		$form->cf_url->remove();
+		//add a second fieldset for the next two fields
+		$form->append( 'fieldset', 'cf_contentsubmit', _t( 'Leave A Message' ) );
+		$form->cf_contentsubmit->class = "form-part-2";
+		//move the textarea into a second fieldset
+		$form->cf_content->move_into( $form->cf_contentsubmit );
+		$form->cf_content->caption = _t( 'Message: (Required)' );
+		//move the submit button in too
+		$form->cf_submit->move_into( $form->cf_contentsubmit );
+		$form->cf_submit->caption = _t( 'Submit' );
+
 	}
 
 }
