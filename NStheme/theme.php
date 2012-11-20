@@ -1,29 +1,29 @@
 <?php if ( !defined( 'HABARI_PATH' ) ) { die('No direct access'); } 
 
-include('inc/lessc.inc.php');
-
-
-
-function autoCompileLess($inputFile, $outputFile) {
-  // load the cache
-  $cacheFile = $inputFile.".cache";
-
-  if (file_exists($cacheFile)) {
-    $cache = unserialize(file_get_contents($cacheFile));
-  } else {
-    $cache = $inputFile;
-  }
-
-  $less = new lessc;
-  $newCache = $less->cachedCompile($cache);
-
-  if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
-    file_put_contents($cacheFile, serialize($newCache));
-    file_put_contents($outputFile, $newCache['compiled']);
-  }
+if(!class_exists('lessc_formatter_compressed')){
+	include_once 'inc/lessc.inc.php';
 }
 
 class NStheme extends theme{
+	
+	function autoCompileLess($inputFile, $outputFile) {
+	  // load the cache
+	  $cacheFile = $inputFile.".cache";
+	
+	  if (file_exists($cacheFile)) {
+	    $cache = unserialize(file_get_contents($cacheFile));
+	  } else {
+	    $cache = $inputFile;
+	  }
+	
+	  $less = new lessc;
+	  $newCache = $less->cachedCompile($cache);
+	
+	  if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
+	    file_put_contents($cacheFile, serialize($newCache));
+	    file_put_contents($outputFile, $newCache['compiled']);
+	  }
+	}
 	
 	public function action_init_theme()
 	{
@@ -36,6 +36,9 @@ class NStheme extends theme{
 		// Creates an excerpt option. echo $post->content_excerpt;
 		Format::apply( 'autop', 'post_content_excerpt' );
 		Format::apply_with_hook_params( 'more', 'post_content_excerpt', 'more',60, 1 );
+		
+		$this->autoCompileLess(dirname(__FILE__)."/less/bootstrap.less",dirname(__FILE__)."/css/bootstrap.css");
+		$this->autoCompileLess(dirname(__FILE__)."/less/custom.less",dirname(__FILE__)."/css/custom.css");
 	}
 	
 	public function add_template_vars()
@@ -96,7 +99,7 @@ class NStheme extends theme{
 }
 
 
-autoCompileLess(dirname(__FILE__)."/less/bootstrap.less",dirname(__FILE__)."/css/bootstrap.css");
-autoCompileLess(dirname(__FILE__)."/less/custom.less",dirname(__FILE__)."/css/custom.css");
+
+
 
 ?>
